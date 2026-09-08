@@ -1318,38 +1318,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-        // =========================================
-// ✍️ HANDWRITTEN LETTER
-// =========================================
-
-const handwrittenButton = document.getElementById("handwrittenButton");
-const handwrittenViewer = document.getElementById("handwrittenViewer");
-const closeHandwritten = document.getElementById("closeHandwritten");
-
-handwrittenButton.addEventListener("click", function () {
-    handwrittenViewer.classList.add("show");
-});
-
-closeHandwritten.addEventListener("click", function () {
-    handwrittenViewer.classList.remove("show");
-});
-
-handwrittenViewer.addEventListener("click", function (event) {
-    if (event.target === handwrittenViewer) {
-        handwrittenViewer.classList.remove("show");
-    }
-});
-
-
-
-    // Start the whole gift over
-    if (replayButton) {
-
-        replayButton.addEventListener("click", function () {
-            window.location.reload();
-        });
-    }
-
 
     // Start the letter fresh, with the first line already showing
     function startLetter() {
@@ -1534,7 +1502,40 @@ handwrittenViewer.addEventListener("click", function (event) {
     }
 
 
+    // =========================================
+// ✍️ HANDWRITTEN LETTER
+// =========================================
 
+const handwrittenButton = document.getElementById("handwrittenButton");
+const handwrittenViewer = document.getElementById("handwrittenViewer");
+const closeHandwritten = document.getElementById("closeHandwritten");
+
+// Open handwritten letter
+handwrittenButton.addEventListener("click", function () {
+    handwrittenViewer.classList.add("show");
+});
+
+// Close handwritten letter
+closeHandwritten.addEventListener("click", function () {
+    handwrittenViewer.classList.remove("show");
+});
+
+// Close when clicking outside the letter
+handwrittenViewer.addEventListener("click", function (event) {
+    if (event.target === handwrittenViewer) {
+        handwrittenViewer.classList.remove("show");
+    }
+});
+
+
+
+    // Start the whole gift over
+    if (replayButton) {
+
+        replayButton.addEventListener("click", function () {
+            window.location.reload();
+        });
+    }
 
 
     console.log("Birthday website loaded successfully!");

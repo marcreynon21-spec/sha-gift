@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit the gift</title>
+    <link rel="stylesheet" href="editor.css">
+</head>
+
+<body>
+
+<header class="bar">
+    <h1>Edit the gift</h1>
+    <button id="buildBtn" class="build" type="button">Download the finished website</button>
+</header>
+
+<!-- Shown when the page was opened by double-clicking the file -->
+<div id="fileWarning" class="warning" hidden>
+    <strong>Open this page from your website address, not from the file.</strong>
+    <span>Browsers block a page opened straight from a folder from reading
+    the other files, so the download button cannot build anything.
+    Upload the folder first, then open <code>/edit.html</code> there.</span>
+</div>
+
+<div id="status" class="status" hidden></div>
+
+<main>
+
+    <p class="lede">
+        Change anything below, then press <b>Download the finished website</b>.
+        You will get a zip with the whole gift inside, ready to upload or send.
+        Nothing is saved until you press it.
+    </p>
+
+
+    <section>
+        <h2>1 &middot; The envelope</h2>
+
+        <label>Line above the envelope
+            <input data-t="envelope.intro"></label>
+
+        <label>Small line under it
+            <input data-t="envelope.introSmall"></label>
+
+        <label>Greeting on the card
+            <input data-t="envelope.greeting"></label>
+
+        <label>Card line 1
+            <input data-t="envelope.line1"></label>
+
+        <label>Card line 2
+            <textarea rows="2" data-t="envelope.line2"></textarea></label>
+
+        <label>Card line 3
+            <input data-t="envelope.line3"></label>
+
+        <label>Button
+            <input data-t="envelope.button"></label>
+
+        <div class="pic" data-pic="envelope.photo" data-name="images/card-photo.jpg">
+            <span class="pic-label">Little photo on the card</span>
+            <img class="pic-preview" alt="">
+            <input type="file" accept="image/*">
+        </div>
+    </section>
+
+
+    <section>
+        <h2>2 &middot; The music</h2>
+
+        <label>Line above the player
+            <input data-t="music.intro"></label>
+
+        <label>Before she presses play
+            <input data-t="music.waiting"></label>
+
+        <label>Small line under that
+            <input data-t="music.waitingSmall"></label>
+
+        <label>Skip link
+            <input data-t="music.skip"></label>
+
+        <h3>The 5 songs</h3>
+        <p class="note">Each song can have its own cover. It fades in when
+        that song starts playing.</p>
+        <div id="songs"></div>
+    </section>
+
+
+    <section>
+        <h2>3 &middot; The flower garden</h2>
+
+        <label>Title
+            <input data-t="garden.title"></label>
+
+        <label>Subtitle
+            <input data-t="garden.subtitle"></label>
+
+        <label>Hint on the little letter
+            <input data-t="garden.hint"></label>
+
+        <h3>One message per flower</h3>
+        <div id="flowerMessages"></div>
+
+        <label>Title when all 16 are picked
+            <input data-t="garden.completeTitle"></label>
+
+        <label>Line 1
+            <input data-t="garden.completeLine1"></label>
+
+        <label>Line 2
+            <input data-t="garden.completeLine2"></label>
+
+        <label>Button
+            <input data-t="garden.completeButton"></label>
+    </section>
+
+
+    <section>
+        <h2>4 &middot; The stickers</h2>
+
+        <label>Title
+            <input data-t="stickers.title"></label>
+
+        <label>Subtitle
+            <input data-t="stickers.subtitle"></label>
+
+        <label>Words on the foil
+            <input data-t="stickers.foilTitle"></label>
+
+        <label>Small words on the foil
+            <input data-t="stickers.foilSmall"></label>
+
+        <label>Title once all 9 are found
+            <input data-t="stickers.foundTitle"></label>
+
+        <label>Line under it
+            <input data-t="stickers.foundText"></label>
+
+        <label>Button
+            <input data-t="stickers.nextButton"></label>
+
+        <h3>The 9 stickers</h3>
+        <div id="stickerPics" class="grid"></div>
+    </section>
+
+
+    <section>
+        <h2>5 &middot; The letter</h2>
+
+        <label>Title
+            <input data-t="letter.title"></label>
+
+        <div class="grid two">
+            <div class="pic" data-pic="letter.photo1" data-name="images/letter-1.jpg">
+                <span class="pic-label">Photo 1</span>
+                <img class="pic-preview" alt="">
+                <input type="file" accept="image/*">
+            </div>
+            <div class="pic" data-pic="letter.photo2" data-name="images/letter-2.jpg">
+                <span class="pic-label">Photo 2</span>
+                <img class="pic-preview" alt="">
+                <input type="file" accept="image/*">
+            </div>
+        </div>
+
+        <h3>The message, one line at a time</h3>
+        <p class="note">Each line appears when she taps. Leave a box empty to drop that line.</p>
+        <div id="letterLinesEdit"></div>
+        <button id="addLine" class="small" type="button">Add another line</button>
+
+        <label>Button while reading
+            <input data-t="letter.nextButton"></label>
+
+        <label>Button at the end
+            <input data-t="letter.doneButton"></label>
+    </section>
+
+
+    <section>
+        <h2>6 &middot; The wish</h2>
+
+        <label>Line above the cake
+            <input data-t="wish.hint"></label>
+
+        <label>Small line under it
+            <input data-t="wish.hintSmall"></label>
+
+        <div class="pic" data-pic="wish.photo" data-name="images/final-photo.jpg">
+            <span class="pic-label">Round photo at the end</span>
+            <img class="pic-preview" alt="">
+            <input type="file" accept="image/*">
+        </div>
+
+        <label>Final title
+            <input data-t="wish.title"></label>
+
+        <label>Final line 1
+            <input data-t="wish.line1"></label>
+
+        <label>Final line 2
+            <input data-t="wish.line2"></label>
+
+        <label>Replay button
+            <input data-t="wish.replayButton"></label>
+    </section>
+
+</main>
+
+<footer>
+    <button id="buildBtn2" class="build" type="button">Download the finished website</button>
+    <p class="note">The zip holds the whole gift. Unzip it and upload the files,
+    or open <code>index.html</code> inside to look at it first.</p>
+</footer>
+
+<script src="content.js"></script>
+<script src="editor.js"></script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

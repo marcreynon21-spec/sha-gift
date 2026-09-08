@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Something 💗</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!--
+      The one audio player for the whole gift. It sits outside every
+      scene on purpose: hiding a scene would stop the music if the
+      player lived inside one.
+    -->
+    <audio id="player" preload="none"></audio>
+
+    <!-- Small pause control that follows her through the later scenes -->
+    <button id="miniPlayer" class="mini-player" type="button" hidden
+            aria-label="Pause or play the music">
+        <span class="mini-bars"><i></i><i></i><i></i></span>
+    </button>
+
+
+    <!--
+    ============================================================
+      HOW THIS PAGE WORKS
+      ------------------------------------------------------------
+      There are 3 "scenes". Each one is a <section class="scene">.
+      Only ONE scene is visible at a time - the one that also has
+      the class "active". script.js adds and removes that class.
+
+        Scene 1  #envelopeScene  -> open the envelope, read the card
+        Scene 2  #musicScene     -> start the music, then move on
+        Scene 3  #gardenScene    -> pick 16 flowers, build a bouquet
+        Scene 4  #stickerScene   -> scratch off 9 stickers
+    ============================================================
+    -->
+
+
+    <!--
+    ============================================================
+      SCENE 1 - ENVELOPE
+    ============================================================
+    -->
+    <section id="envelopeScene" class="scene envelope-area active">
+
+        <!-- Hearts drifting up behind everything. Decoration only, so
+             they ignore taps and never block the envelope. -->
+        <div class="floaties" aria-hidden="true">
+            <span>&#9825;</span><span>&#10022;</span><span>&#9825;</span>
+            <span>&#10022;</span><span>&#9825;</span><span>&#10022;</span>
+        </div>
+
+        <!-- Text above the envelope -->
+        <div class="envelope-intro">
+            <p>You received something! 💌</p>
+            <span>Tap that heart to open it ☺️</span>
+        </div>
+
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+
+                <!-- Plain back panel of the envelope -->
+                <div class="envelope-back"></div>
+
+                <!-- The card that slides up and out -->
+                <div class="greeting-card">
+
+                    <div class="card-ribbon">
+                        <img src="images/Ribbon.png" alt="Pink ribbon">
+                    </div>
+
+                    <div class="card-greeting">
+                        <span>Happy Happy Birthday to you!! 🎀</span>
+                    </div>
+
+                    <hr>
+
+                    <!-- Small photo on the card -->
+                    <div class="little-poster"></div>
+
+                    <div class="card-text">
+                        <span id="first-text">Heyy Cutiepie!!</span>
+
+                        <span id="second-text">
+                            I wanted to give you a little something,
+                            so I thought why not make it myself?
+                        </span>
+
+                        <span id="third-text">I hope this brings you smile.</span>
+                    </div>
+
+                    <!-- Goes to Scene 2 -->
+                    <button id="toGardenScene" type="button">Yisyis!!</button>
+
+                </div>
+
+                <!-- Front pocket, drawn on top of the card -->
+                <div class="envelope-front"></div>
+
+                <!-- Triangle flap that folds open -->
+                <div class="envelope-flap"></div>
+
+                <!-- The heart you tap to start -->
+                <button id="openEnvelope" class="envelope-seal" type="button">💗</button>
+
+            </div>
+        </div>
+
+        <div class="envelope-shadow"></div>
+
+    </section>
+
+
+    <!--
+    ============================================================
+      SCENE 2 - THE MUSIC
+
+      She taps play, the song starts, and the gift moves straight on
+      to the garden. The music keeps going from here to the end.
+
+      The 5 songs go in the music/ folder. Their titles live in
+      script.js, in the "playlist" list.
+    ============================================================
+    -->
+    <section id="musicScene" class="scene music-scene">
+
+        <div class="music-card">
+
+            <p class="music-intro">Some songs for you &#9834;</p>
+
+            <div class="album-art">
+                <img id="albumCover" src="images/photo1.jpg" alt="Album cover">
+                <span class="album-ring"></span>
+            </div>
+
+            <p class="song-title" id="songTitle">Tap play to start</p>
+            <p class="song-artist" id="songArtist">5 songs, on shuffle</p>
+
+            <div class="music-controls">
+                <button id="prevSong" class="music-side" type="button" aria-label="Previous song">&#9664;&#9664;</button>
+                <button id="playSong" class="music-play" type="button" aria-label="Play">&#9654;</button>
+                <button id="nextSong" class="music-side" type="button" aria-label="Next song">&#9654;&#9654;</button>
+            </div>
+
+            <button id="skipMusic" class="music-skip" type="button">Continue without music</button>
+
+        </div>
+
+    </section>
+
+
+    <!--
+    ============================================================
+      SCENE 3 - GARDEN
+    ============================================================
+    -->
+    <section id="gardenScene" class="scene garden-scene">
+
+        <div class="garden-content">
+
+            <div class="garden-intro">
+                <h2>Pick the flowers 🌷</h2>
+                <p>I prepared 16 flowers for you..</p>
+            </div>
+
+            <!--
+              The 16 flowers.
+              data-flower is the flower's number. script.js reads it
+              to know which message to show in the letter.
+              Where each flower sits on screen is set in style.css
+              (.flower1 ... .flower16).
+            -->
+            <div class="flowers">
+                <img src="images/flower1.png"  class="flower flower1"  data-flower="1"  alt="Flower 1">
+                <img src="images/flower2.png"  class="flower flower2"  data-flower="2"  alt="Flower 2">
+                <img src="images/flower3.png"  class="flower flower3"  data-flower="3"  alt="Flower 3">
+                <img src="images/flower4.png"  class="flower flower4"  data-flower="4"  alt="Flower 4">
+                <img src="images/flower5.png"  class="flower flower5"  data-flower="5"  alt="Flower 5">
+                <img src="images/flower6.png"  class="flower flower6"  data-flower="6"  alt="Flower 6">
+                <img src="images/flower7.png"  class="flower flower7"  data-flower="7"  alt="Flower 7">
+                <img src="images/flower8.png"  class="flower flower8"  data-flower="8"  alt="Flower 8">
+                <img src="images/flower9.png"  class="flower flower9"  data-flower="9"  alt="Flower 9">
+                <img src="images/flower10.png" class="flower flower10" data-flower="10" alt="Flower 10">
+                <img src="images/flower11.png" class="flower flower11" data-flower="11" alt="Flower 11">
+                <img src="images/flower12.png" class="flower flower12" data-flower="12" alt="Flower 12">
+                <img src="images/flower13.png" class="flower flower13" data-flower="13" alt="Flower 13">
+                <img src="images/flower14.png" class="flower flower14" data-flower="14" alt="Flower 14">
+                <img src="images/flower15.png" class="flower flower15" data-flower="15" alt="Flower 15">
+                <img src="images/flower16.png" class="flower flower16" data-flower="16" alt="Flower 16">
+            </div>
+
+            <!-- Letter that pops up after picking a flower -->
+            <div id="flowerLetter" class="flower-letter">
+                <div class="letter-paper">
+
+                    <button id="closeLetter" class="close-letter" type="button">&raquo;</button>
+
+                    <p id="letterMessage">You found me!</p>
+
+                    <div class="letter-hint">Tap the letter to continue &hearts;</div>
+
+                </div>
+            </div>
+
+            <!--
+              Bouquet in the corner. Picked tulips get added into
+              #bouquetFlowers, which sits BEHIND the wrapping paper so
+              the stems disappear into it. When all 16 are picked,
+              script.js slides this whole thing to the middle.
+            -->
+            <div class="bouquet-area" id="bouquetArea">
+
+                <!-- The tulips -->
+                <div id="bouquetFlowers" class="bouquet-flowers"></div>
+
+                <!-- Florist paper: two folded panels meeting in a V -->
+                <div class="bouquet-wrap">
+                    <span class="wrap-left"></span>
+                    <span class="wrap-right"></span>
+                    <span class="wrap-shine"></span>
+                </div>
+
+                <!-- Ribbon tied at the neck -->
+                <svg class="bouquet-bow" viewBox="0 0 100 62" aria-hidden="true">
+                    <path class="bow-tail" d="M46 30 C40 42 34 50 27 58 L38 55 C43 47 47 39 50 33 Z"/>
+                    <path class="bow-tail" d="M54 30 C60 42 66 50 73 58 L62 55 C57 47 53 39 50 33 Z"/>
+                    <path class="bow-loop" d="M50 30 C32 11 11 15 13 29 C15 43 34 39 50 30 Z"/>
+                    <path class="bow-loop" d="M50 30 C68 11 89 15 87 29 C85 43 66 39 50 30 Z"/>
+                    <ellipse class="bow-knot" cx="50" cy="30" rx="8" ry="7"/>
+                </svg>
+
+            </div>
+
+            <div class="flower-counter">
+                <span id="flowerCount">0</span>
+                <span>/ 16 flowers</span>
+            </div>
+
+            <!-- Shown once all 16 flowers are picked -->
+            <div id="bouquetComplete" class="bouquet-complete">
+                <h2>For you &hearts;</h2>
+                <p>You picked every little flower.</p>
+                <p>And now they are all yours.</p>
+
+                <!-- Goes to Scene 3 -->
+                <button id="patchButton" type="button">Ready for more?</button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!--
+    ============================================================
+      SCENE 4 - STICKER HUNT
+    ============================================================
+    -->
+    <section id="stickerScene" class="scene sticker-scene">
+
+        <div class="sticker-title">
+            <h1>A Few Little Things...</h1>
+            <p>There are 20 little stickers under the foil.</p>
+            <span id="sticker-count">0 / 20</span>
+        </div>
+
+        <!--
+          Scratch card. The 9 stickers sit in a grid underneath, and a
+          canvas painted like pink foil covers them. Dragging a finger
+          across the canvas rubs the foil away. script.js watches how
+          much of each sticker has been uncovered and counts it found.
+        -->
+        <div class="sticker-hunt">
+
+            <!-- PALITAN: images/stickers/sticker1.png ... sticker9.png
+                 Ilagay lang ang bagong larawan sa parehong pangalan. -->
+            <div class="sticker-grid">
+                <img src="images/stickers/sticker1.png" class="hunt-sticker" alt="Sticker 1">
+                <img src="images/stickers/sticker2.png" class="hunt-sticker" alt="Sticker 2">
+                <img src="images/stickers/sticker3.png" class="hunt-sticker" alt="Sticker 3">
+                <img src="images/stickers/sticker4.png" class="hunt-sticker" alt="Sticker 4">
+                <img src="images/stickers/sticker5.png" class="hunt-sticker" alt="Sticker 5">
+                <img src="images/stickers/sticker6.png" class="hunt-sticker" alt="Sticker 6">
+                <img src="images/stickers/sticker7.png" class="hunt-sticker" alt="Sticker 7">
+                <img src="images/stickers/sticker8.png" class="hunt-sticker" alt="Sticker 8">
+                <img src="images/stickers/sticker9.png" class="hunt-sticker" alt="Sticker 9">
+                <img src="images/stickers/sticker10.png" class="hunt-sticker" alt="Sticker 10">
+                <img src="images/stickers/sticker11.png" class="hunt-sticker" alt="Sticker 11">
+                <img src="images/stickers/sticker12.png" class="hunt-sticker" alt="Sticker 12">
+                <img src="images/stickers/sticker13.png" class="hunt-sticker" alt="Sticker 13">
+                <img src="images/stickers/sticker14.png" class="hunt-sticker" alt="Sticker 14">
+                <img src="images/stickers/sticker15.png" class="hunt-sticker" alt="Sticker 15">
+                <img src="images/stickers/sticker16.png" class="hunt-sticker" alt="Sticker 16">
+                <img src="images/stickers/sticker17.png" class="hunt-sticker" alt="Sticker 17">
+                <img src="images/stickers/sticker18.png" class="hunt-sticker" alt="Sticker 18">
+                <img src="images/stickers/sticker19.png" class="hunt-sticker" alt="Sticker 19">
+                <img src="images/stickers/sticker20.png" class="hunt-sticker" alt="Sticker 20">
+            </div>
+
+            <canvas id="scratchLayer" class="scratch-layer"
+                    aria-label="Scratch the foil to uncover the stickers"></canvas>
+
+        </div>
+
+
+        <!-- Everything below appears only after all 9 are found -->
+        <div id="all-found">
+            <h2>✨ You found them all! ✨</h2>
+            <p>Now you can keep them however you like.</p>
+        </div>
+
+        <div id="sticker-choices">
+
+            <button id="stack-button" type="button">
+                📸
+                <span>Sticker Stack</span>
+                <small>View &amp; Save</small>
+            </button>
+
+        </div>
+
+        <!-- Fullscreen viewer: one sticker at a time -->
+        <div id="stack-viewer">
+
+            <button id="close-stack" type="button">✕</button>
+
+            <p id="stack-number">1 / 20</p>
+
+            <img id="current-sticker" src="images/stickers/sticker1.png" alt="Sticker">
+
+            <div class="stack-controls">
+                <button id="previous-button" type="button">&larr;</button>
+                <a id="download-button" href="images/stickers/sticker1.png" download>Download</a>
+                <button id="next-button" type="button">&rarr;</button>
+            </div>
+
+        </div>
+
+        <button id="scene4-button" type="button">Ready for the next surprise? &rarr;</button>
+
+    </section>
+
+
+    <!--
+    ============================================================
+      SCENE 5 - THE LETTER (main message)
+
+      The message is revealed one line at a time so it is read
+      slowly instead of all at once. Each <p class="letter-line">
+      is one tap. Add or remove lines freely - script.js just
+      walks through whatever is here.
+    ============================================================
+    -->
+    <section id="letterScene" class="scene letter-scene">
+
+        <div class="letter-sheet">
+
+            <!-- PALITAN: images/photo1.jpg at images/photo2.jpg
+                 Dalawang polaroid na naka-tape, bahagyang magkapatong. -->
+            <div class="letter-photos">
+
+                <div class="letter-photo photo-a">
+                    <img src="images/photo1.jpg" alt="A photo of you">
+                    <span class="letter-tape letter-tape-left"></span>
+                    <span class="letter-tape letter-tape-right"></span>
+                </div>
+
+                <div class="letter-photo photo-b">
+                    <img src="images/photo2.jpg" alt="Another photo of you">
+                    <span class="letter-tape letter-tape-left"></span>
+                    <span class="letter-tape letter-tape-right"></span>
+                </div>
+
+            </div>
+
+            <h2 class="letter-title">Something I wanted to say</h2>
+
+            <!-- PALITAN MO ANG MGA LINYA NA ITO -->
+            <div class="letter-lines" id="letterLines">
+                <p class="letter-line"></p>
+                <p class="letter-line"></p>
+                <p class="letter-line"></p>
+                <p class="letter-line"></p>
+                <p class="letter-line"></p>
+                <p class="letter-line"></p>
+                <p class="letter-line"> &#127872;</p>
+            </div>
+
+            <button id="letterNext" class="letter-next" type="button">Read on &#8594;</button>
+
+            <button id="toLastScene" class="letter-done" type="button">One more thing &#8594;</button>
+
+                 <!-- Button directly under the picture -->
+                 <div id="handwrittenViewer" class="handwritten-viewer">
+
+                 <div class="handwritten-content">
+
+                 <button id="closeHandwritten" class="close-handwritten" type="button">
+                  ×
+                 </button>
+
+            <img 
+            src="images/handwritten-letter.png" 
+            alt="Handwritten birthday letter"
+            class="handwritten-image"
+        >
+
+    </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!--
+    ============================================================
+      SCENE 6 - THE WISH (final message)
+
+      Tap the candles to blow them out. The flames go out, confetti
+      falls, and the final card fades in.
+    ============================================================
+    -->
+    <section id="lastScene" class="scene last-scene">
+
+        <!-- falling confetti is generated here by script.js -->
+        <div class="confetti" id="confetti"></div>
+
+        <div class="wish-stage" id="wishStage">
+
+            <p class="wish-hint" id="wishHint">Make a wish &#127874;<span>tap the candles</span></p>
+
+            <button class="cake" id="cake" type="button" aria-label="Blow out the candles">
+
+                <!-- Drawn back to front: plate, body, frosting,
+                     cake top, candles, then the flames on top. -->
+                <span class="cake-plate"></span>
+                <span class="cake-body"></span>
+                <span class="cake-drip"></span>
+                <span class="cake-top"></span>
+
+                <!-- sprinkles on the frosting -->
+                <span class="sprinkle s1"></span>
+                <span class="sprinkle s2"></span>
+                <span class="sprinkle s3"></span>
+                <span class="sprinkle s4"></span>
+                <span class="sprinkle s5"></span>
+
+                <span class="candle candle1"></span>
+                <span class="candle candle2"></span>
+                <span class="candle candle3"></span>
+
+                <span class="flame flame1"></span>
+                <span class="flame flame2"></span>
+                <span class="flame flame3"></span>
+
+            </button>
+
+        </div>
+
+        <!-- Shown after the candles are out -->
+        <div class="final-card" id="finalCard">
+
+            <!-- PALITAN: images/photo1.jpg -->
+            <img class="final-photo" src="images/photo1.jpg" alt="A photo of you">
+
+            <h2>Happy Birthday &#9825;</h2>
+
+
+            <!-- PALITAN MO ANG MENSAHE NA ITO -->
+            <p>Thank you for being you.</p>
+            <p>I hope today feels exactly like you deserve.</p>
+
+            <button id="replayButton" class="replay-button" type="button">Play it again &#8635;</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- All the words and pictures. Loaded first so the page can
+         fill itself in from it. Edit it with edit.html. -->
+    <script src="content.js"></script>
+
+    <script src="script.js"></script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>

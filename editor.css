@@ -1,0 +1,279 @@
+/* =========================================================
+   THE EDITOR
+
+   Deliberately plain and roomy. This page is a tool, not part
+   of the gift, so it stays out of the way and keeps the fields
+   easy to find.
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #fdf6f9;
+    color: #4a3b42;
+    font: 15px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding-bottom: 60px;
+}
+
+.bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: #fff;
+    border-bottom: 1px solid #f0dae4;
+    box-shadow: 0 2px 10px rgba(150, 90, 120, .07);
+}
+
+.bar h1 {
+    font-size: 19px;
+    color: #b8355f;
+}
+
+main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.lede {
+    margin: 24px 0 8px;
+    padding: 14px 16px;
+    background: #fff;
+    border-left: 4px solid #f0a5c0;
+    border-radius: 8px;
+    color: #6b5560;
+}
+
+section {
+    margin-top: 28px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(150, 90, 120, .07);
+}
+
+h2 {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f5e3ea;
+    font-size: 17px;
+    color: #b8355f;
+}
+
+h3 {
+    margin: 22px 0 8px;
+    font-size: 14px;
+    color: #8a6b78;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+label {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: #7c6470;
+}
+
+input[type="text"],
+input:not([type]),
+textarea {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px 12px;
+    border: 1px solid #ecd6e0;
+    border-radius: 8px;
+    background: #fffdfe;
+    color: #4a3b42;
+    font: inherit;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #f0a5c0;
+    box-shadow: 0 0 0 3px rgba(240, 165, 192, .25);
+}
+
+.note {
+    margin: 4px 0 12px;
+    color: #97808b;
+    font-size: 13px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+}
+
+.grid.two {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+
+/* ---- a picture slot ---- */
+
+.pic {
+    margin: 10px 0 16px;
+    padding: 12px;
+    background: #fffafc;
+    border: 1px dashed #ecd6e0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.pic-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #7c6470;
+}
+
+.pic-preview {
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 10px;
+    object-fit: cover;
+    background: #f6e8ee;
+    border-radius: 8px;
+}
+
+.pic input[type="file"],
+.song input[type="file"] {
+    width: 100%;
+    font-size: 12px;
+}
+
+
+/* ---- a song row ---- */
+
+.song {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 14px;
+    background: #fffafc;
+    border: 1px solid #f5e3ea;
+    border-radius: 10px;
+}
+
+.song .full {
+    grid-column: 1 / -1;
+}
+
+.song h4 {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    color: #b8355f;
+}
+
+.song .chosen {
+    grid-column: 1 / -1;
+    font-size: 12px;
+    color: #6d9a6d;
+}
+
+
+/* ---- buttons ---- */
+
+.build {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffa6c6, #e0507c);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(226, 102, 143, .35);
+}
+
+.build:hover {
+    filter: brightness(1.05);
+}
+
+.build:disabled {
+    opacity: .55;
+    cursor: progress;
+}
+
+.small {
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    border: 1px solid #ecd6e0;
+    border-radius: 999px;
+    background: #fff;
+    color: #b8355f;
+    font: inherit;
+    cursor: pointer;
+}
+
+footer {
+    max-width: 760px;
+    margin: 32px auto 0;
+    padding: 0 20px;
+    text-align: center;
+}
+
+footer .build {
+    margin-bottom: 10px;
+}
+
+
+/* ---- messages ---- */
+
+.warning,
+.status {
+    max-width: 760px;
+    margin: 16px auto 0;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.warning {
+    background: #fff4e5;
+    border: 1px solid #ffd8a8;
+    color: #7a5320;
+}
+
+.warning span {
+    display: block;
+    margin-top: 6px;
+}
+
+.status {
+    background: #eaf6ec;
+    border: 1px solid #bfe3c6;
+    color: #2f6b3c;
+    text-align: center;
+}
+
+.status.bad {
+    background: #fdecec;
+    border-color: #f5c2c2;
+    color: #8a2b2b;
+}
+
+code {
+    padding: 1px 5px;
+    background: rgba(0, 0, 0, .06);
+    border-radius: 4px;
+    font-size: .9em;
+}
